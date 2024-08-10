@@ -50,7 +50,7 @@ function Navbar ({setter}) {
                 </> : <>
                 <nav className="flex relative">
                     <div className="block w-[86%] overflow-hidden h-[100vh] bg-[#EEEEEE] py-4 px-5 relative z-10">
-                        <div className="h-[90vh]">
+                        <div className="h-[86vh]">
                             <h1 id="logo" className="text-[19px] md:text-2xl font-serif lg:hidden w-max">Vehicle Owner Identification</h1>
                         <div className="block">
                             <div className="w-[100%] cursor-pointer py-2 px-4 my-1" onClick={toggleOff}>
