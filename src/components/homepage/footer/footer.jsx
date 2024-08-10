@@ -1,13 +1,7 @@
 /* eslint-disable react/style-prop-object */
-import React,{useEffect} from "react";
-import AOS from "aos";
-import 'aos/dist/aos.css';
+import React from "react";
 
 function Footer () {
-    useEffect(()=> {
-        AOS.init();
-    }, [])
-
     return (
         <>
         <section id="footer" className="bg-[#508C9B] w-full py-6 md:py-8 m-0 text-center">

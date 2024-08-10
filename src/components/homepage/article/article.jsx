@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import vehicle from "../../../assets/images/vehicle_plate_number.jpg"
 
 function Article () {
+     //animation library effect
     useEffect(()=> {
         AOS.init();
     },[]

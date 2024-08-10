@@ -1,26 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect} from "react";
-import AOS from "aos";
-import 'aos/dist/aos.css';
 import  Hamburger from "../../../assets/icons/bars-solid.svg"
 import  Dismiss from "../../../assets/icons/xmark-solid.svg"
 
 
 function Navbar ({setter}) {
+    //useState to switch the hamburger toggler
     const [toggle, setToggle] = useState(false);
-
-    useEffect(()=> {
-        AOS.init();
-    }, [])
-
+    
+    //function to toggle the switch on
     const toggleOn = () => {
         setToggle(true)
     }
+
+      //function to toggle the switch off
     const toggleOff = () => {
         setToggle(false)
     }
 
+    //function to be called in the Parent component
     setter(toggle)
 
 

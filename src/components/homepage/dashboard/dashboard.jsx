@@ -9,40 +9,57 @@ import { useNavigate } from "react-router-dom";
 
 
 function Dashboard () {
+    //used to navigate
     const navigate = useNavigate()
+
+    //used to save data and set data
     const [vehicleData, setVehicleData] = useState();
     const [inputValue, setInputValue] = useState();
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
+    //animation library effect
     useEffect(()=> {
         AOS.init();
     }, [])
 
+    //get the  vehicle data from the json url
     useEffect(()=> {
         axios.get("http://localhost:8000/vehicle_owners").then((res)=> {
             setVehicleData(res.data);
         })
     }, [])
 
-
+    //on change function in the search input field
     const handleChange = (event) => {
         setInputValue(event.target.value);
         setError(false);
     }
 
+    //filter function when the check owner is click and navigation to the detail page
     const search = () => {
         let detail = []
         if(inputValue) {
             let value = inputValue.toUpperCase();
             detail = vehicleData.filter((data)=> data.vehicle_plate_number === value)
             if(detail.length !== 0) {
-                navigate(`/detail/${detail[0].id}`);
+                setLoading(true)
+                setTimeout(()=> {
+                    setLoading(false);
+                    navigate(`/detail/${detail[0].id}`);
+                }, 5000)
+            
             }
     
         }
-
+        //check if the detail length is equal to 0 to toggle the error mode
         if(detail.length === 0) {
-            setError(true);
+            setLoading(true)
+            setTimeout(()=> {
+                setLoading(false);
+                setError(true);
+            }, 5000)
+       
         } 
       
  
@@ -61,7 +78,7 @@ function Dashboard () {
                 <div className="mt-5 mx-auto w-[98%] md:w-[520px] py-2 align-middle md:h-[78px] bg-[#EEEEEE] rounded-[50px] border-2 border-[#201E43] flex">
                     <input onChange={(e) => handleChange(e)} className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px]" type="text" placeholder="Enter Vehicle Plate Number" />
                     <button onClick={search} className="md:h-[60px] w-[36%] bg-[#201E43] rounded-[50px] hover:opacity-90 md:text-xl text-[#EEEEEE]">
-                        Check Owner
+                        {loading ? `Loading...` : `Check Owner`}
                     </button>
                 </div>
             </> : 

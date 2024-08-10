@@ -3,7 +3,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-import './homepage.css'
 import Dashboard from "./dashboard/dashboard";
 import Article from "./article/article";
 import Contact from "./contact/contact";
@@ -11,10 +10,15 @@ import Footer from "./footer/footer";
 
 
 function Homepage () {
-    const [toggle, setToggle] = useState(false)
+      //useState to switch the hamburger toggler
+    const [toggle, setToggle] = useState(false);
+
+    //function to set the toggler value
     const dataChild = (data) => {
         setToggle(data)
     }
+
+
     return (<>
     {
         toggle ? 

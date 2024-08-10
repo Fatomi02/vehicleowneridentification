@@ -4,6 +4,7 @@ import AOS from "aos";
 import 'aos/dist/aos.css';
 
 function Contact () {
+    //animation library effect
     useEffect(()=> {
         AOS.init()
     }, [])
