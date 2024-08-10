@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, {useState} from "react";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 import Navbar from "./navbar/navbar";
@@ -12,12 +12,25 @@ import Footer from "./footer/footer";
 
 
 function Homepage () {
+    const [toggle, setToggle] = useState(false)
+    const dataChild = (data) => {
+        setToggle(data)
+    }
     return (<>
-     <Navbar  />
-     <Dashboard />
-     <Article />
-    <Contact />
-    <Footer />
+    {
+        toggle ? 
+        <>
+            <Navbar setter={dataChild} />
+        </> : 
+        <>
+            <Navbar setter={dataChild} />
+            <Dashboard />
+            <Article />
+            <Contact />
+            <Footer />
+        </>
+    }
+
     </>)
 
 }
