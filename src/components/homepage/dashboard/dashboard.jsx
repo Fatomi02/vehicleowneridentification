@@ -37,7 +37,7 @@ function Dashboard () {
     }
 
     //filter function when the check owner is click and navigation to the detail page
-    const search = () => {
+    const searchFunc = () => {
         let detail = []
         if(inputValue !== "") {
             let value = inputValue.toUpperCase();
@@ -77,7 +77,7 @@ function Dashboard () {
             <>
                 <div className="mt-5 mx-auto w-[98%] md:w-[520px] py-2 align-middle md:h-[78px] bg-[#EEEEEE] rounded-[50px] border-2 border-[#201E43] flex">
                     <input onChange={(e) => handleChange(e)} className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px]" type="text" placeholder="Enter Vehicle Plate Number" />
-                    <button onClick={search} className="md:h-[60px] w-[36%] bg-[#201E43] rounded-[50px] hover:opacity-90 md:text-xl text-[#EEEEEE]">
+                    <button onClick={()=> searchFunc()} className="md:h-[60px] w-[36%] bg-[#201E43] rounded-[50px] hover:opacity-90 md:text-xl text-[#EEEEEE]">
                         {loading ? `Loading...` : `Check Owner`}
                     </button>
                 </div>
@@ -85,7 +85,7 @@ function Dashboard () {
             <>
                 <div className="mt-5 mx-auto w-[98%] md:w-[520px] py-2 align-middle md:h-[78px] bg-[#EEEEEE] rounded-[50px] border-2 border-red-700 flex">
                     <input onChange={(e) => handleChange(e)} className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px]" type="text" placeholder="Enter Vehicle Plate Number" />
-                    <button onClick={search} className="md:h-[60px] w-[36%] bg-[#201E43] rounded-[50px] hover:opacity-90 md:text-xl text-[#EEEEEE]">
+                    <button onClick={()=> searchFunc()} className="md:h-[60px] w-[36%] bg-[#201E43] rounded-[50px] hover:opacity-90 md:text-xl text-[#EEEEEE]">
                     {loading ? `Loading...` : `Check Owner`}
                     </button>
                 </div>
