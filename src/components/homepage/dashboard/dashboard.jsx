@@ -14,7 +14,7 @@ function Dashboard () {
 
     //used to save data and set data
     const [vehicleData, setVehicleData] = useState();
-    const [inputValue, setInputValue] = useState();
+    const [inputValue, setInputValue] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
