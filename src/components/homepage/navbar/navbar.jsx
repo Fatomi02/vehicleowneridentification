@@ -10,7 +10,7 @@ function Navbar ({setter}) {
     const navigate = useNavigate()
     //useState to switch the hamburger toggler
     const [toggle, setToggle] = useState(false);
-    
+
     //function to toggle the switch on
     const toggleOn = () => {
         setToggle(true)
@@ -49,7 +49,7 @@ function Navbar ({setter}) {
                     <div className="hover:border-b-2 h-8"><a href="#contact">Contact Us</a></div>
                 </div>
                 <div className="flex-row gap-4 hidden md:flex h-10">
-                    <button className="px-5 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log Out</button>
+                    <button onClick={logOut} className="px-5 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log Out</button>
                     {/* <button className="px-5 hover:bg-[#000000] bg-[white] hover:text-white rounded-[20px]">Sign In</button> */}
                 </div>
             </nav>
