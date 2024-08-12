@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useRef} from "react";
 import  Hamburger from "../../../assets/icons/bars-solid.svg"
 import  Dismiss from "../../../assets/icons/xmark-solid.svg"
+import { useNavigate } from "react-router-dom";
 
 
 function Navbar ({setter}) {
+    const navigate = useNavigate()
     //useState to switch the hamburger toggler
     const [toggle, setToggle] = useState(false);
     
@@ -17,6 +19,11 @@ function Navbar ({setter}) {
       //function to toggle the switch off
     const toggleOff = () => {
         setToggle(false)
+    }
+
+    const logOut = () => {
+        localStorage.setItem("auth", "");
+        navigate("/login")
     }
 
     //function to be called in the Parent component
@@ -42,8 +49,8 @@ function Navbar ({setter}) {
                     <div className="hover:border-b-2 h-8"><a href="#contact">Contact Us</a></div>
                 </div>
                 <div className="flex-row gap-4 hidden md:flex h-10">
-                    <button className="px-5 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log In</button>
-                    <button className="px-5 hover:bg-[#000000] bg-[white] hover:text-white rounded-[20px]">Sign In</button>
+                    <button className="px-5 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log Out</button>
+                    {/* <button className="px-5 hover:bg-[#000000] bg-[white] hover:text-white rounded-[20px]">Sign In</button> */}
                 </div>
             </nav>
                 </> : <>
@@ -65,8 +72,8 @@ function Navbar ({setter}) {
                         </div>
 
                         <div className="w-[100%] flex gap-5 mt-4">
-                            <button onClick={toggleOff} className="px-5 py-2 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log In</button>
-                            <button onClick={toggleOff} className="px-5 py-2 hover:bg-[#000000] bg-[white] hover:text-white rounded-[20px]">Sign In</button>
+                            <button onClick={logOut} className="px-5 py-2 hover:bg-[#000000] bg-[#201E43] rounded-[20px] text-white">Log Out</button>
+                            {/* <button onClick={toggleOff} className="px-5 py-2 hover:bg-[#000000] bg-[white] hover:text-white rounded-[20px]">Sign In</button> */}
                         </div>
                     </div>
                     <div className="w-[14%] py-4 px-5 bg-[antiquewhite] opacity-70 h-[100vh]">

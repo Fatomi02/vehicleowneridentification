@@ -2,13 +2,26 @@ import './App.css';
 import Detail from './components/detail/detail';
 import Homepage from './components/homepage/homepage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from './components/login/login';
+import PrivateRoutes from './privateroutes';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" index element={<Homepage />} />
-        <Route path="/detail/:id" element={<Detail />} />
+        <Route path='/' element={
+          <PrivateRoutes>
+            <Homepage />
+          </PrivateRoutes>
+          }>
+        </Route>
+        <Route path='/detail/:id' element={
+          <PrivateRoutes>
+            <Detail />
+          </PrivateRoutes>
+          }>
+        </Route>
+        <Route path='/login' element={<Login />} />
       </Routes>
     </BrowserRouter>
 
