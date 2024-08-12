@@ -4,6 +4,7 @@ import Homepage from './components/homepage/homepage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from './components/login/login';
 import PrivateRoutes from './privateroutes';
+import NoPage from './components/nopage/nopage'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           }>
         </Route>
         <Route path='/login' element={<Login />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
 

@@ -4,25 +4,25 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
-import image from "../../assets/images/vehicle_plate_number.jpg"
 
 function Detail () {
     //storing the data of the vehicle owner
     const [detail, setDetail] = useState();
     const [loading, setLoading] = useState(false);
     const [description, setDescription] = useState("");
+    const [minValue, setMinValue] = useState(false);
     const [sent, setSent] = useState(false);
     const navigate = useNavigate()
     const idleTimeRef = useRef(null)
 
     const onIdle = () => {
         localStorage.setItem("auth", "");
-        navigate("./login")
+        navigate("/login")
     }
 
     const idleTimer = useIdleTimer({
         ref: idleTimeRef,
-        timeout: 1000 * 60 * 8,
+        timeout: 1000 * 60 * 5,
         onIdle,
         debounce: 500
     })
@@ -32,59 +32,79 @@ function Detail () {
     useEffect(()=> {
         axios.get(`http://localhost:8000/vehicle_owners/${id}`).then((res)=> {
             setDetail(res?.data);
+            setDescription("")
         })
     }, [])
     const handleChange = (e) => {
             setDescription(e.target.value)
+            if(e.target.value.length >= 5) {
+                setMinValue(false)
+            }
         }
 
     const submitToFrsc = () => {
-        detail.description = description
-        setDetail(detail)
-        setLoading(true);
-        setTimeout(()=> {
-            axios.post(`http://localhost:8000/post-info-FRSC`, detail, {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              }).then((res)=> {
-                console.log(res)
-            })  
-            .catch(function (error) {
-                console.log(error);
-              });
-              setLoading(false);
-              setSent(true);
-              setTimeout(()=> {
-                setSent(false)
-              }, 2000)
-        }, 4000)
+        if(description.length < 5 ) {
+            setMinValue(true)
+            return
+        }
+        else {
+            detail.description = description
+            setDetail(detail)
+            setLoading(true);
+            setTimeout(()=> {
+                axios.post(`http://localhost:8000/post-info-FRSC`, detail, {
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  }).then((res)=> {
+                    console.log(res)
+                })  
+                .catch(function (error) {
+                    console.log(error);
+                  });
+                  setLoading(false);
+                  setDescription("")
+                  setSent(true);
+                  setTimeout(()=> {
+                    setSent(false)
+                  }, 2000)
+            }, 4000)
+        }
+
 
     }
 
     const submitToPolice = () => {
-        detail.description = description
-        setDetail(detail)
-        setLoading(true);
-        setTimeout(()=> {
-            axios.post(`http://localhost:8000/post-info-Police`, detail, {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              }).then((res)=> {
-                console.log(res)
-            })  
-            .catch(function (error) {
-                console.log(error);
-              });
-        setLoading(false)
-        setSent(true);
+        if(description.length < 5 ) {
+            setMinValue(true)
+            return
+        }
+        else {
+            detail.description = description
+            setDetail(detail)
+            setLoading(true);
             setTimeout(()=> {
-                setSent(false)
-            }, 2000)
-        }, 4000)
-
+                axios.post(`http://localhost:8000/post-info-Police`, detail, {
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  }).then((res)=> {
+                    console.log(res)
+                })  
+                .catch(function (error) {
+                    console.log(error);
+                  });
+            setLoading(false)
+             setDescription("")
+            setSent(true);
+                setTimeout(()=> {
+                    setSent(false)
+                }, 2000)
+            }, 4000)
+        }
+  
     }
+
     return (
         <>
         <section id="nav" className="bg-[#508C9B] w-full lg:py-2 m-0">
@@ -98,7 +118,7 @@ function Detail () {
             <div className="md:w-[82%] w-[96%] justify-between m-auto mt-5 p-2 block lg:flex">
                 <div className="lg:w-[48%]">
                     <h2 className="text-center text-xl text-[#201E43] font-serif mb-5">Profile Picture</h2>
-                    <img className="w-fit mx-auto lg:h-[590px] h-[300px] bg-blue-900" src={image} alt="" />
+                    <img className="w-full lg:w-fit mx-auto lg:h-[590px] h-[300px] bg-blue-900" src={detail?.image} alt="" />
                 </div>
                 <div className="lg:w-[48%]">
                     <h2 className="text-center border-b-[1px] text-xl font-serif mb-5">Details</h2>
@@ -165,7 +185,8 @@ function Detail () {
             <h2 className="text-center text-2xl font-serif mt-5 text-[#201E43]">Offense Description</h2>
                  <div className="lg:w-[82%] w-[96%] justify-between m-auto mt-5 p-2 block lg:flex">
                     <div className="lg:w-[48%] w-[96%] mx-auto lg:mx-0">
-                        <textarea onChange={(e)=> handleChange(e)} className="text-lg h-[180px] w-full p-3" name="offense_description" id="offense_description"></textarea>
+                        <textarea value={description} onChange={(e)=> handleChange(e)} className="text-lg h-[180px] w-full p-3" placeholder="Description of what the person did" name="offense_description" id="offense_description"></textarea>
+                        { minValue ? <><span className="text-red-700">Description character should be more than 4</span></> : <></>}
                     </div>
                     <div className="lg:w-[48%] mx-auto lg:mx-0 w-[96%] mt-5 lg:mt-0 flex gap-8 justify-around items-center">
                     {

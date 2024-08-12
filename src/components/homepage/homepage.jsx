@@ -17,12 +17,12 @@ function Homepage () {
 
     const onIdle = () => {
         localStorage.setItem("auth", "");
-        navigate("./login")
+        navigate("/login")
     }
 
     const idleTimer = useIdleTimer({
         ref: idleTimeRef,
-        timeout: 1000 * 60 * 8,
+        timeout: 1000 * 60 * 5,
         onIdle,
         debounce: 500
     })

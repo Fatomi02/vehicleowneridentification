@@ -100,7 +100,7 @@ function Login() {
             <div>
                 <div className="w-[90%] mx-auto">
                     <label className="block text-xl font-bold">Enter Email Address</label>
-                    <input onChange={(e)=> handleEmailChange(e)} className="w-full bg-inherit focus:border-blue-700 border-gray-600 border-[1px] mt-3 h-[40px] px-3" type="text" placeholder="Your Email" required/>
+                    <input value={emailValue} onChange={(e)=> handleEmailChange(e)} className="w-full bg-inherit focus:border-blue-700 border-gray-600 border-[1px] mt-3 h-[40px] px-3" type="text" placeholder="Your Email" required/>
                     {emailError !== "" ? <>
                         <span className="text-red-700">{emailError}</span>
                         </> : <></>
@@ -108,7 +108,7 @@ function Login() {
                 </div>
                 <div className="w-[90%] mt-5 mx-auto">
                     <label className="block text-xl font-bold">Enter Password</label>
-                    <input onChange={(e)=> handlePasswordChange(e)} className="w-full bg-inherit focus:border-blue-700 border-gray-600 border-[1px] mt-3 h-[40px] px-3" type="password" placeholder="Your Password" required/>
+                    <input value={passwordValue} onChange={(e)=> handlePasswordChange(e)} className="w-full bg-inherit focus:border-blue-700 border-gray-600 border-[1px] mt-3 h-[40px] px-3" type="password" placeholder="Your Password" required/>
                     {passwordError !== "" ? <>
                         <span className="text-red-700">{passwordError}</span>
                         </> : <></>
