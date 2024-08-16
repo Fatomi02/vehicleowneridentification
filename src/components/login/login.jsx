@@ -13,7 +13,7 @@ function Login() {
     const [passwordError, setPasswordError] = useState("")
 
     useEffect(()=> {
-        axios.get("http://localhost:8000/users").then((res)=> {
+        axios.get("https://vehicle-owner-database-default-rtdb.firebaseio.com/users.json").then((res)=> {
             setData(res?.data)
         }).catch((error)=> {
             console.log(error)

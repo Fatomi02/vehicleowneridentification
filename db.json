@@ -372,6 +372,40 @@
       "plate_number_expiring_date": "2023-07-15",
       "valid_driver_license": true,
       "description": "He killed my goat"
+    },
+    {
+      "id": "1",
+      "firstname": "John",
+      "lastname": "Doe",
+      "middlename": "Michael",
+      "image": "https://i.ibb.co/T1yJbFx/image-1.jpg",
+      "address": "123 Elm Street, Springfield, IL",
+      "vehicle_plate_number": "ABC1234",
+      "date_of_birth": "1985-06-15",
+      "state": "Illinois",
+      "blood_group": "O+",
+      "vehicle_name": "Toyota Camry",
+      "plate_number_issued_date": "2022-01-10",
+      "plate_number_expiring_date": "2024-01-10",
+      "valid_driver_license": true,
+      "description": "ysdystdgfd"
+    },
+    {
+      "id": "18",
+      "firstname": "Sophia",
+      "lastname": "Hall",
+      "middlename": "Victoria",
+      "image": "https://i.ibb.co/c3cFsvW/image-18.jpg",
+      "address": "123 Pine Lane, Salt Lake City, UT",
+      "vehicle_plate_number": "EDC3456",
+      "date_of_birth": "1986-03-02",
+      "state": "Utah",
+      "blood_group": "O-",
+      "vehicle_name": "Ford Escape",
+      "plate_number_issued_date": "2021-08-15",
+      "plate_number_expiring_date": "2023-08-15",
+      "valid_driver_license": false,
+      "description": "killer"
     }
   ],
   "post-info-Police": [
@@ -391,6 +425,23 @@
       "plate_number_expiring_date": "2023-07-15",
       "valid_driver_license": true,
       "description": "bfgylfef"
+    },
+    {
+      "id": "1",
+      "firstname": "John",
+      "lastname": "Doe",
+      "middlename": "Michael",
+      "image": "https://i.ibb.co/T1yJbFx/image-1.jpg",
+      "address": "123 Elm Street, Springfield, IL",
+      "vehicle_plate_number": "ABC1234",
+      "date_of_birth": "1985-06-15",
+      "state": "Illinois",
+      "blood_group": "O+",
+      "vehicle_name": "Toyota Camry",
+      "plate_number_issued_date": "2022-01-10",
+      "plate_number_expiring_date": "2024-01-10",
+      "valid_driver_license": true,
+      "description": "v hhbbivr"
     }
   ]
 }

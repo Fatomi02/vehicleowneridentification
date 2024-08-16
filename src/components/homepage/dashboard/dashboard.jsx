@@ -25,8 +25,15 @@ function Dashboard () {
 
     //get the  vehicle data from the json url
     useEffect(()=> {
-        axios.get("http://localhost:8000/vehicle_owners").then((res)=> {
+        axios.get("https://vehicle-owner-database-default-rtdb.firebaseio.com/vehicle_owners.json").then((res)=> {
             setVehicleData(res.data);
+            console.log(res.data)
+        })
+    }, [])
+
+    useEffect(()=> {
+        axios.get("https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-FRSC.json").then((res)=> {
+            console.log(res.data);
         })
     }, [])
 
@@ -38,7 +45,7 @@ function Dashboard () {
 
     const enter = (e) => {
         if(e.key === "Enter" || e.key === "Return") {
-            searchFunc()
+            searchFunc();
         }
         return;
     }

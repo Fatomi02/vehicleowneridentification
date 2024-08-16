@@ -30,11 +30,12 @@ function Detail () {
     const { id } = useParams();
     //getting the detail of the owner with the id gotten using param
     useEffect(()=> {
-        axios.get(`http://localhost:8000/vehicle_owners/${id}`).then((res)=> {
+        axios.get(`https://vehicle-owner-database-default-rtdb.firebaseio.com/vehicle_owners/${id}.json`).then((res)=> {
             setDetail(res?.data);
             setDescription("")
         })
     }, [])
+
     const handleChange = (e) => {
             setDescription(e.target.value)
             if(e.target.value.length >= 5) {
@@ -47,12 +48,12 @@ function Detail () {
             setMinValue(true)
             return
         }
-        else {
+        else {  
             detail.description = description
             setDetail(detail)
             setLoading(true);
             setTimeout(()=> {
-                axios.post(`http://localhost:8000/post-info-FRSC`, detail, {
+                axios.post(`https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-FRSC.json`, detail, {
                     headers: {
                       'Content-Type': 'application/json'
                     }
@@ -84,7 +85,7 @@ function Detail () {
             setDetail(detail)
             setLoading(true);
             setTimeout(()=> {
-                axios.post(`http://localhost:8000/post-info-Police`, detail, {
+                axios.post(`https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-Police.json`, detail, {
                     headers: {
                       'Content-Type': 'application/json'
                     }
