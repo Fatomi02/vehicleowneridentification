@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef} from "react";
 import  Hamburger from "../../../assets/icons/bars-solid.svg"
 import  Dismiss from "../../../assets/icons/xmark-solid.svg"
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import 'aos/dist/aos.css';
 
 
 function Navbar ({setter}) {
@@ -26,6 +28,11 @@ function Navbar ({setter}) {
         navigate("/login")
     }
 
+         //animation library effect
+    useEffect(()=> {
+            AOS.init();
+        },[toggle])
+
     //function to be called in the Parent component
     setter(toggle)
 
@@ -34,7 +41,7 @@ function Navbar ({setter}) {
         <section id="nav" className="bg-[#508C9B] w-full lg:py-2 m-0">
             {
                 !toggle ? <>
-            <nav className="flex flex-row flex-nowrap justify-between align-middle w-full lg:w-[98%] xl:w-[88%] m-auto p-4">
+            <nav className="flex flex-row flex-nowrap justify-between align-middle w-full lg:w-[98%] xl:w-[88%] m-auto p-4" data-aos="fade-left" data-aos-duration="2000">
                 <div className="flex gap-4 align-middle lg:hidden">
                     <div className="flex flex-row align-middle" onClick={toggleOn}>
                         <img className="h-[25px] mt-[1px]" src={Hamburger} alt="toggler" />
@@ -54,7 +61,7 @@ function Navbar ({setter}) {
                 </div>
             </nav>
                 </> : <>
-                <nav className="flex relative">
+                <nav className="flex relative" data-aos="fade-left" data-aos-duration="2000">
                     <div className="block w-[86%] overflow-hidden h-[100vh] bg-[#EEEEEE] py-4 px-5 relative z-10">
                         <div className="h-[86vh]">
                             <h1 id="logo" className="text-[19px] md:text-2xl font-serif lg:hidden w-max">Vehicle Owner Identification</h1>

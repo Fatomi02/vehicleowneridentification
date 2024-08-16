@@ -9,6 +9,7 @@ import Dashboard from "./dashboard/dashboard";
 import Article from "./article/article";
 import Contact from "./contact/contact";
 import Footer from "./footer/footer";
+import ScrollToTop from "./scrolltotop";
 
 
 function Homepage () {
@@ -46,6 +47,7 @@ function Homepage () {
             <Dashboard />
             <Article />
             <Contact />
+            <ScrollToTop />
             <Footer />
         </>
     }

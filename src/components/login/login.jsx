@@ -46,12 +46,9 @@ function Login() {
         })
 
         if(filter.length < 1) {
-            setLoading(true);
             setTimeout(()=> {
-                setLoading(false);
                 setEmailError("Email record not found");
                 setPasswordError("Incorrect Password");
-            
             }, 3000)
             return
 
@@ -66,26 +63,20 @@ function Login() {
           
         }
         if(filter[0].email.toLowerCase() !== emailText & filter[0].password.toLowerCase() !== passwordText) {
-            setLoading(true);
             setTimeout(()=> {
-                setLoading(false);
                 setEmailError("Email record not found");
                 setPasswordError("Incorrect Password");
             }, 3000)
 
         }
         if(filter[0].email.toLowerCase() !== emailText) {
-            setLoading(true);
             setTimeout(()=> {
-                setLoading(false);
                 setEmailError("Email record not found");
             }, 3000)
   
         }
         if(filter[0].password.toLowerCase() !== passwordText) {
-            setLoading(true);
             setTimeout(()=> {
-                setLoading(false);
                 setPasswordError("Incorrect Password");
             }, 3000)
 

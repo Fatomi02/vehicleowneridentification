@@ -27,13 +27,6 @@ function Dashboard () {
     useEffect(()=> {
         axios.get("https://vehicle-owner-database-default-rtdb.firebaseio.com/vehicle_owners.json").then((res)=> {
             setVehicleData(res.data);
-            console.log(res.data)
-        })
-    }, [])
-
-    useEffect(()=> {
-        axios.get("https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-FRSC.json").then((res)=> {
-            console.log(res.data);
         })
     }, [])
 
