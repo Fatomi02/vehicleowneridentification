@@ -32,7 +32,8 @@ function Login() {
     const login = () => {
         let filter = [];
         let emailText = emailValue.toLowerCase();
-        let passwordText = passwordValue.toLowerCase()
+        let passwordText = passwordValue.toLowerCase();
+        const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
         filter = data.filter((r) => {
             if(data.filter((res)=> res.email.toLowerCase() === emailText).length !== 0) {
@@ -45,11 +46,17 @@ function Login() {
            
         })
 
+
         if(filter.length < 1) {
+            if(!gmailRegex.test(emailText)) {
+                setEmailError('Please enter a valid Gmail address')
+            }
+            else {
                 setEmailError("Email record not found");
+            }
+               
                 setPasswordError("Incorrect Password");
             return
-
         }
         if(filter[0].email.toLowerCase() === emailText & filter[0].password.toLowerCase() === passwordText) {
             localStorage.setItem("auth", "true")
@@ -67,10 +74,11 @@ function Login() {
         if(filter[0].email.toLowerCase() !== emailText) {
                 setEmailError("Email record not found");
         }
+        if(!gmailRegex.test(emailText)) {
+            setEmailError('Please enter a valid Gmail address')
+        }
         if(filter[0].password.toLowerCase() !== passwordText) {
                 setPasswordError("Incorrect Password");
-
-
         }
     }
 
@@ -79,6 +87,7 @@ function Login() {
         {!loading ? <>
             <div className="block lg:w-[40%] w-[86%] bg-slate-300 mx-auto rounded-md pt-7 pb-10">
             <h1 id="logo" className="text-[19px] w-full lg:text-[40px] font-serif text-center">Vehicle Owner Identification</h1>
+            <form action="">
             <div>
                 <div className="w-[90%] mx-auto">
                     <label className="block text-xl font-bold">Enter Email Address</label>
@@ -98,10 +107,10 @@ function Login() {
                 </div>
             </div>
             <div className="w-[90%] mt-5 mx-auto">
-                <button onClick={login} className="w-full bg-inherit hover:bg-blue-800 hover:text-white border-blue-700 border-[1px] mt-5 h-[40px]">Log In</button>
-                <button className="w-full bg-inherit hover:bg-red-600 hover:text-white border-blue-700 border-[1px] mt-5 h-[40px]">Sign In</button>
+                <input type="submit" onClick={login} value="Log In" className="w-full bg-inherit cursor-pointer hover:bg-blue-800 text-center hover:text-white border-blue-700 border-[1px] mt-5 h-[40px]" />
+                <button className="w-full bg-inherit hover:bg-red-600 hover:text-white border-blue-700 border-[1px] mt-5 h-[40px]" disabled>Sign In</button>
             </div>
-         
+            </form>
         </div>
         </> : <>
         <div className="w-[200px] h-[100px] bg-gray-300 flex items-center justify-center">

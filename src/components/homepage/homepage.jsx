@@ -17,7 +17,7 @@ function Homepage () {
     const idleTimeRef = useRef(null)
 
     const onIdle = () => {
-        localStorage.setItem("auth", "");
+        localStorage.clear()
         navigate("/login")
     }
 

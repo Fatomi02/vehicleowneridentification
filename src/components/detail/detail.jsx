@@ -16,7 +16,7 @@ function Detail () {
     const idleTimeRef = useRef(null)
 
     const onIdle = () => {
-        localStorage.setItem("auth", "");
+        localStorage.clear()
         navigate("/login")
     }
 
@@ -48,7 +48,8 @@ function Detail () {
             setMinValue(true)
             return
         }
-        else {  
+        else { 
+            detail.read = false 
             detail.description = description
             setDetail(detail)
             setLoading(true);
@@ -81,6 +82,7 @@ function Detail () {
             return
         }
         else {
+            detail.read = false 
             detail.description = description
             setDetail(detail)
             setLoading(true);
