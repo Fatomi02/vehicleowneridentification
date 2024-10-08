@@ -1,16 +1,22 @@
 /* eslint-disable react/style-prop-object */
 import React from "react";
 
-function Footer () {
-    return (
-        <>
-        <section id="footer" className="bg-[#508C9B] w-full py-6 md:py-8 m-0 text-center">
+function Footer() {
+  return (
+    <>
+      <section
+        id="footer"
+        className="bg-[#508C9B] w-full py-6 md:py-8 m-0 text-center"
+      >
         <div>
-            &copy; Copyright <strong><span>Fatomi Olaitan & Sanusi Segun</span></strong>
+          &copy; Copyright{" "}
+          <strong>
+            <span>Fatomi Olaitan & Sanusi Segun</span>
+          </strong>
         </div>
-        </section>
-        </>
-    )
+      </section>
+    </>
+  );
 }
 
 export default Footer;

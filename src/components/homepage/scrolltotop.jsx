@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,13 +19,13 @@ const ScrollToTop = () => {
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   return (
@@ -33,16 +33,16 @@ const ScrollToTop = () => {
       {isVisible && (
         <button
           style={{
-            position: 'fixed',
-            bottom: '70px',
-            right: '10px',
-            padding: '10px 20px',
-            fontSize: '16px',
-            backgroundColor: '#201E43',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '20px',
-            cursor: 'pointer',
+            position: "fixed",
+            bottom: "70px",
+            right: "10px",
+            padding: "10px 20px",
+            fontSize: "16px",
+            backgroundColor: "#201E43",
+            color: "#fff",
+            border: "none",
+            borderRadius: "20px",
+            cursor: "pointer",
           }}
           onClick={handleScrollToTop}
         >
