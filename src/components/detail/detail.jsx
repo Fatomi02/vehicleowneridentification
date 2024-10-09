@@ -60,15 +60,39 @@ function Detail() {
 
     // Pad minutes with leading zero if needed
     const formattedMinutes = minutes.toString().padStart(2, "0");
-
     // Combine into the final format
     const formattedTime = `${hours}:${formattedMinutes}${period}`;
+
+    //For current Date
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, "0"); // Add leading zero for single digits
+    const month = months[date.getMonth()]; // Get the short month name
+    const year = date.getFullYear(); // Get the full year
+
+    const formattedDate = `${day}-${month}-${year}`;
+
     if (description.length < 5) {
       setMinValue(true);
       return;
     } else {
       detail.read = false;
       detail.time = formattedTime;
+      detail.date = formattedDate;
       detail.description = description;
       setDetail(detail);
       setLoading(true);
@@ -115,12 +139,37 @@ function Detail() {
 
     // Combine into the final format
     const formattedTime = `${hours}:${formattedMinutes}${period}`;
+
+    //For current Date
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, "0"); // Add leading zero for single digits
+    const month = months[date.getMonth()]; // Get the short month name
+    const year = date.getFullYear(); // Get the full year
+
+    const formattedDate = `${day}-${month}-${year}`;
+
     if (description.length < 5) {
       setMinValue(true);
       return;
     } else {
       detail.read = false;
       detail.time = formattedTime;
+      detail.date = formattedDate;
       detail.description = description;
       setDetail(detail);
       setLoading(true);
