@@ -87,7 +87,7 @@ function Dashboard() {
               <input
                 onKeyPress={(e) => enter(e)}
                 onChange={(e) => handleChange(e)}
-                className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px]"
+                className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px] outline"
                 type="text"
                 placeholder="Enter Vehicle Plate Number"
               />
@@ -105,7 +105,7 @@ function Dashboard() {
               <input
                 onKeyPress={(e) => enter(e)}
                 onChange={(e) => handleChange(e)}
-                className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px]"
+                className="h-full w-[62%] py-[6px] px-4 text-[14px] md:text-xl font-bold bg-[#EEEEEE] border-none rounded-[50px] outline"
                 type="text"
                 placeholder="Enter Vehicle Plate Number"
               />
