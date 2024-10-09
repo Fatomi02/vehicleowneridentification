@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useIdleTimer } from "react-idle-timer";
+import Footer from "../homepage/footer/footer";
 
 function Detail() {
   //storing the data of the vehicle owner
@@ -400,6 +401,7 @@ function Detail() {
           </div>
         </>
       )}
+      <Footer />
     </>
   );
 }
