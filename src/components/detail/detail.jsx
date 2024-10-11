@@ -23,7 +23,7 @@ function Detail() {
 
   const idleTimer = useIdleTimer({
     ref: idleTimeRef,
-    timeout: 1000 * 60 * 5,
+    timeout: 1000 * 60 * 10,
     onIdle,
     debounce: 500,
   });
@@ -121,85 +121,89 @@ function Detail() {
           setSent(false);
         }, 2000);
       }, 4000);
+      window.scrollTo({
+        bottom: 0,
+        behavior: "smooth",
+      });
     }
   };
 
-  const submitToPolice = () => {
-    const now = new Date();
-    let hours = now.getHours();
-    const minutes = now.getMinutes();
+  // const submitToPolice = () => {
+  //   const now = new Date();
+  //   let hours = now.getHours();
+  //   const minutes = now.getMinutes();
 
-    // Determine AM or PM
-    const period = hours >= 12 ? "pm" : "am";
+  //   // Determine AM or PM
+  //   const period = hours >= 12 ? "pm" : "am";
 
-    // Convert to 12-hour format
-    hours = hours % 12 || 12; // Convert 0 to 12 for midnight
+  //   // Convert to 12-hour format
+  //   hours = hours % 12 || 12; // Convert 0 to 12 for midnight
 
-    // Pad minutes with leading zero if needed
-    const formattedMinutes = minutes.toString().padStart(2, "0");
+  //   // Pad minutes with leading zero if needed
+  //   const formattedMinutes = minutes.toString().padStart(2, "0");
 
-    // Combine into the final format
-    const formattedTime = `${hours}:${formattedMinutes}${period}`;
+  //   // Combine into the final format
+  //   const formattedTime = `${hours}:${formattedMinutes}${period}`;
 
-    //For current Date
-    const months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+  //   //For current Date
+  //   const months = [
+  //     "Jan",
+  //     "Feb",
+  //     "Mar",
+  //     "Apr",
+  //     "May",
+  //     "Jun",
+  //     "Jul",
+  //     "Aug",
+  //     "Sep",
+  //     "Oct",
+  //     "Nov",
+  //     "Dec",
+  //   ];
 
-    const date = new Date();
-    const day = String(date.getDate()).padStart(2, "0"); // Add leading zero for single digits
-    const month = months[date.getMonth()]; // Get the short month name
-    const year = date.getFullYear(); // Get the full year
+  //   const date = new Date();
+  //   const day = String(date.getDate()).padStart(2, "0"); // Add leading zero for single digits
+  //   const month = months[date.getMonth()]; // Get the short month name
+  //   const year = date.getFullYear(); // Get the full year
 
-    const formattedDate = `${day}-${month}-${year}`;
+  //   const formattedDate = `${day}-${month}-${year}`;
 
-    if (description.length < 5) {
-      setMinValue(true);
-      return;
-    } else {
-      detail.read = false;
-      detail.time = formattedTime;
-      detail.date = formattedDate;
-      detail.description = description;
-      setDetail(detail);
-      setLoading(true);
-      setTimeout(() => {
-        axios
-          .post(
-            `https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-Police.json`,
-            detail,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            },
-          )
-          .then((res) => {
-            console.log(res);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        setLoading(false);
-        setDescription("");
-        setSent(true);
-        setTimeout(() => {
-          setSent(false);
-        }, 2000);
-      }, 4000);
-    }
-  };
+  //   if (description.length < 5) {
+  //     setMinValue(true);
+  //     return;
+  //   } else {
+  //     detail.read = false;
+  //     detail.time = formattedTime;
+  //     detail.date = formattedDate;
+  //     detail.description = description;
+  //     setDetail(detail);
+  //     setLoading(true);
+  //     setTimeout(() => {
+  //       axios
+  //         .post(
+  //           `https://vehicle-owner-database-default-rtdb.firebaseio.com/post-info-Police.json`,
+  //           detail,
+  //           {
+  //             headers: {
+  //               "Content-Type": "application/json",
+  //             },
+  //           },
+  //         )
+  //         .then((res) => {
+  //           console.log(res);
+  //         })
+  //         .catch(function (error) {
+  //           console.log(error);
+  //         });
+  //       setLoading(false);
+  //       setDescription("");
+  //       setSent(true);
+  //       setTimeout(() => {
+  //         setSent(false);
+  //       }, 2000);
+  //     }, 4000);
+  //   }
+  // };
 
   return (
     <>
@@ -382,12 +386,12 @@ function Detail() {
                     >
                       Send to FRSC
                     </button>
-                    <button
+                    {/* <button
                       onClick={submitToPolice}
                       className="bg-[#508C9B] hover:bg-[#000000] hover:text-white lg:h-12 text-center py-2 px-5 rounded-[50px]"
                     >
                       Send to Police Office
-                    </button>
+                    </button> */}
                   </>
                 )}
               </div>

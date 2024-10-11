@@ -15,6 +15,17 @@ function Homepage() {
   const navigate = useNavigate();
   const idleTimeRef = useRef(null);
 
+  useEffect(()=> {
+    const handleScrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    handleScrollToTop();
+  }, [])
+
   const onIdle = () => {
     localStorage.clear();
     navigate("/login");
@@ -22,7 +33,7 @@ function Homepage() {
 
   const idleTimer = useIdleTimer({
     ref: idleTimeRef,
-    timeout: 1000 * 60 * 5,
+    timeout: 1000 * 60 * 10,
     onIdle,
     debounce: 500,
   });
