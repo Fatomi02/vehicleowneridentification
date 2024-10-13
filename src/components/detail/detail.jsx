@@ -11,7 +11,11 @@ function Detail() {
   const [detail, setDetail] = useState();
   const [loading, setLoading] = useState(false);
   const [description, setDescription] = useState("");
+  const [offenseFee, setOffenseFee] = useState();
+  const [dueDate, setDueDate] = useState();
   const [minValue, setMinValue] = useState(false);
+  const [errorFee, setErrorFee] = useState(false);
+  const [errorDueDate, setErrorDueDate] = useState(false);
   const [sent, setSent] = useState(false);
   const navigate = useNavigate();
   const idleTimeRef = useRef(null);
@@ -39,6 +43,8 @@ function Detail() {
         setDetail(res?.data);
         setDescription("");
       });
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('due_date').setAttribute('min', today);
   }, []);
 
   const handleChange = (e) => {
@@ -47,6 +53,20 @@ function Detail() {
       setMinValue(false);
     }
   };
+
+  const handleOffenseFeeChange = (e) => {
+    setOffenseFee(e.target.value)
+    if (e.target.value) {
+      setErrorFee(false);
+    }
+  }
+
+  const handleDueDate = (e) => {
+    setDueDate(e.target.value)
+    if (e.target.value) {
+      setErrorDueDate(false);
+    }
+  }
 
   const submitToFrsc = () => {
     const now = new Date();
@@ -90,11 +110,22 @@ function Detail() {
     if (description.length < 5) {
       setMinValue(true);
       return;
-    } else {
+    }
+    else if(!offenseFee) {
+      setErrorFee(true);
+      return;
+    }
+    else if(!dueDate) {
+      setErrorDueDate(true);
+      return;
+    }
+    else {
       detail.read = false;
       detail.time = formattedTime;
       detail.date = formattedDate;
       detail.description = description;
+      detail.dueDate = dueDate;
+      detail.offenseFee = offenseFee;
       setDetail(detail);
       setLoading(true);
       setTimeout(() => {
@@ -116,6 +147,8 @@ function Detail() {
           });
         setLoading(false);
         setDescription("");
+        setOffenseFee();
+        setDueDate()
         setSent(true);
         setTimeout(() => {
           setSent(false);
@@ -234,7 +267,7 @@ function Detail() {
                   alt=""
                 />
               </div>
-              <div className="lg:w-[48%]">
+              <div className="lg:w-[48%] mt-5 lg:mt-0">
                 <h2 className="text-center border-b-[1px] text-xl font-serif mb-5">
                   Details
                 </h2>
@@ -351,7 +384,7 @@ function Detail() {
             <h2 className="text-center text-2xl font-serif mt-5 text-[#201E43]">
               Offense Description
             </h2>
-            <div className="lg:w-[82%] w-[96%] justify-between m-auto mt-5 p-2 block lg:flex">
+            <div className="lg:w-[82%] w-[96%] justify-between m-auto mt-5 p-2 flex flex-col gap-4 lg:flex-row">
               <div className="lg:w-[48%] w-[96%] mx-auto lg:mx-0">
                 <textarea
                   value={description}
@@ -371,7 +404,39 @@ function Detail() {
                   <></>
                 )}
               </div>
-              <div className="lg:w-[48%] mx-auto lg:mx-0 w-[96%] mt-5 lg:mt-0 flex gap-8 justify-around items-center">
+              <div className="flex flex-col gap-4 justify-between lg:items-baseline">
+                <div>
+                  <div className="flex items-center gap-[10px]">
+                  <label htmlFor="offense_fee" className="text-xl">Offense Fee: #</label>
+                  <input className="p-1" type="number" onChange={(e)=> handleOffenseFeeChange(e)} value={offenseFee} name="offense_fee" id="offense_fee" min={0} required />
+                  </div>
+                  {errorFee ? (
+                  <>
+                    <span className="text-red-700">
+                      Enter Offense Price
+                    </span>
+                  </>
+                ) : (
+                  <></>
+                )}
+                </div>
+                <div>
+                <div className="flex items-center gap-[10px]">
+                <label htmlFor="due_date" className="text-xl">Due date: </label>
+                <input className="p-1" type="date" onChange={(e)=> handleDueDate(e)} value={dueDate} name="due_date" id="due_date" required />
+                </div>
+                {errorDueDate ? (
+                  <>
+                    <span className="text-red-700">
+                      Enter Offense Due Date
+                    </span>
+                  </>
+                ) : (
+                  <></>
+                )}
+                </div>
+              </div>
+              <div className="lg:w-[20%] mx-auto lg:mx-0 w-[96%] mt-5 lg:mt-0 flex gap-8 justify-around items-center">
                 {sent ? (
                   <>
                     <div className="lg:w-[400px] w-[200px] h-14 bg-green-700 flex justify-center items-center rounded-[20px]">
