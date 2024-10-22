@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 html {
+  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
 
@@ -10,4 +11,8 @@ html {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+}
+
+input, textarea, select {
+  font-size: 16px;
 }
